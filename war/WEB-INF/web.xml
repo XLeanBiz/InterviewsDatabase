@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+
+  <!-- Servlets -->
+  
+ 	<servlet>
+		<servlet-name>authenticationServlet</servlet-name>
+		<servlet-class>co.uniqueid.authentication.server.LoginServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>authenticationServlet</servlet-name>
+		<url-pattern>/interviewsdatabase/authentication</url-pattern>
+	</servlet-mapping>
+  
+	<servlet>
+		<servlet-name>uniqueIDServlet</servlet-name>
+		<servlet-class>co.uniqueid.authentication.server.uniqueID.UniqueIDServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>uniqueIDServlet</servlet-name>
+		<url-pattern>/interviewsdatabase/uniqueID</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>custdevframework</servlet-name>
+		<servlet-class>com.interviewsdb.server.CustDevFrameworkServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>custdevframework</servlet-name>
+		<url-pattern>/interviewsdatabase/custdevframework</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>startupdata</servlet-name>
+		<servlet-class>com.interviewsdb.server.StartupDataServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>startupdata</servlet-name>
+		<url-pattern>/interviewsdatabase/startupdata</url-pattern>
+	</servlet-mapping>
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>InterviewsDatabase.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>
