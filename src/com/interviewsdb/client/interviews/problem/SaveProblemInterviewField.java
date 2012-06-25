@@ -1,12 +1,13 @@
 package com.interviewsdb.client.interviews.problem;
 
+import co.uniqueid.authentication.client.utilities.ConvertJson;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.interviewsdb.client.home.Home;
 import com.interviewsdb.client.interviews.CustDevFrameworkService;
 import com.interviewsdb.client.interviews.CustDevFrameworkServiceAsync;
 
-public class SaveProblemInterview {
+public class SaveProblemInterviewField {
 
 	public static void save() {
 
@@ -23,8 +24,19 @@ public class SaveProblemInterview {
 
 					public void onSuccess(String unoUserJson) {
 
-						Home.vpMain.clear();
-						Home.vpMain.add(new Home());
+						String interviewID = ConvertJson
+								.convertToString(ProblemInterview.interview
+										.get("ID"));
+
+						if (interviewID == null) {
+
+							interviewID = unoUserJson;
+
+							ConvertJson.setStringValue(
+									ProblemInterview.interview, interviewID,
+									"ID");
+						}
+
 					}
 				});
 

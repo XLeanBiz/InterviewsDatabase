@@ -41,7 +41,7 @@ public class FormField {
 		vp.setSpacing(5);
 		vp.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 
-		Label title = new Label(label + ": ");
+		Label title = new Label(label);
 		vp.add(title);
 
 		vp.add(field);

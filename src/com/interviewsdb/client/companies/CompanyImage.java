@@ -1,12 +1,13 @@
 package com.interviewsdb.client.companies;
 
+import co.uniqueid.authentication.client.utilities.ConvertJson;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.interviewsdb.client.utilities.ConvertJson;
 import com.interviewsdb.client.utilities.UseTracking;
 
 public class CompanyImage extends VerticalPanel {

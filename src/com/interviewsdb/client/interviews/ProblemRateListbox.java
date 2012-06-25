@@ -6,14 +6,14 @@ public class ProblemRateListbox extends ListBox {
 
 	public ProblemRateListbox(final String rate) {
 
-		this.setWidth("300px");
+		this.setWidth("350px");
 
 		this.addItem("");
 
 		this.addItem("5 - I MUST HAVE a solution for this problem.", "5");
 		this.addItem(
 				"4 - It will be NICE TO HAVE a solution for this problem.", "4");
-		this.addItem("3 - MAYBE I want a solution for this problem.", "3");
+		this.addItem("3 - MAYBE, I don't care about a solution for this problem.", "3");
 		this.addItem("2 - I DON'T NEED a solution for this problem.", "2");
 		this.addItem("1 - I DON'T HAVE this problem.", "1");
 

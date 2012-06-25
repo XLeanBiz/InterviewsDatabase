@@ -34,25 +34,25 @@ public class Companies extends VerticalPanel {
 
 		VerticalPanel vpEvent5 = new VerticalPanel();
 		hp.add(vpEvent5);
-		GetCompanies.getFromID("IsItSafe_1333323433155", vpEvent5);
+		GetCompanies.getFromID("FashionMetric_1340074986772", vpEvent5);
 
-		/*
-		 * HorizontalPanel hp2 = new HorizontalPanel(); hp2.setSpacing(40);
-		 * vpMainEvent.add(hp2);
-		 * 
-		 * VerticalPanel vpEvent4 = new VerticalPanel(); hp2.add(vpEvent4);
-		 * GetCompanies.getFromID("LeanStartupMachine_1333817778070", null,
-		 * vpEvent4);
-		 * 
-		 * VerticalPanel vpEvent3 = new VerticalPanel(); hp2.add(vpEvent3);
-		 * GetCompanies.getFromID("AnsirInnovationCenter_1333132928482", null,
-		 * vpEvent3);
-		 * 
-		 * VerticalPanel vpEvent2 = new VerticalPanel(); hp2.add(vpEvent2);
-		 * GetCompanies.getFromID(
-		 * "AlchemistSeriesCustomerDevelopment_1332897337108", "March 2012",
-		 * vpEvent2);
-		 */
+		HorizontalPanel hp2 = new HorizontalPanel();
+		hp2.setSpacing(40);
+
+		VerticalPanel vpEvent4 = new VerticalPanel();
+		hp2.add(vpEvent4);
+		GetCompanies.getFromID("CustDevProgram_1339702027533", vpEvent4);
+
+		VerticalPanel vpEvent3 = new VerticalPanel();
+		hp2.add(vpEvent3);
+		GetCompanies.getFromID("WeddingHappyIPhoneApp_1340317913053", vpEvent3);
+
+		VerticalPanel vpEvent2 = new VerticalPanel();
+		hp2.add(vpEvent2);
+		GetCompanies.getFromID("WeddingHappyForWeddingPlanners_1340318580026",
+				vpEvent2);
+
+		vpMainEvent.add(hp2);
 
 		return vpMainEvent;
 	}

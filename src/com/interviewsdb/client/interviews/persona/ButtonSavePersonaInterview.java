@@ -7,12 +7,11 @@ import co.uniqueid.authentication.client.utilities.ConvertJson;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.user.client.ui.Button;
 
 public class ButtonSavePersonaInterview extends Button {
 
-	public ButtonSavePersonaInterview(final JSONObject interview) {
+	public ButtonSavePersonaInterview() {
 
 		this.setText("Save Interview");
 
@@ -21,64 +20,73 @@ public class ButtonSavePersonaInterview extends Button {
 			@Override
 			public void onClick(ClickEvent event) {
 
-				ConvertJson.setStringValue(interview,
-						Long.toString((new Date()).getTime()), "datetime");
-
-				String customerName = ConvertJson.getStringValue(
-						UniqueIDGlobalVariables.uniqueID, "entityName");
-				ConvertJson.setStringValue(interview, customerName,
-						"customerName");
-
-				String customerID = ConvertJson.getStringValue(
-						UniqueIDGlobalVariables.uniqueID, "ID");
-				ConvertJson.setStringValue(interview, customerID,
-						"customerUniqueID");
-
-				// ConvertJson.setStringValue(interview, "", "persona");
-
-				getInterviewQuesitons(interview);
-
-				SavePersonaInterview.save(interview);
-
+				prepareInterview();
+				SavePersonaInterview.save();
 			}
 		});
 
 	}
 
-	private void getInterviewQuesitons(JSONObject interview) {
+	public static void prepareInterview() {
 
-		ConvertJson.setStringValue(interview,
-				NewPersonaInterview.describeYourself.getHTML(),
-				"describeYourself");
+		ConvertJson.setStringValue(PersonaInterview.interview,
+				Long.toString((new Date()).getTime()), "datetime");
 
-		ConvertJson.setStringValue(interview,
-				NewPersonaInterview.routine.getHTML(), "routine");
+		String customerName = ConvertJson.getStringValue(
+				UniqueIDGlobalVariables.uniqueID, "entityName");
+		ConvertJson.setStringValue(PersonaInterview.interview, customerName,
+				"customerName");
 
-		ConvertJson.setStringValue(interview,
-				NewPersonaInterview.mainProblem.getHTML(), "mainProblem");
+		String customerID = ConvertJson.getStringValue(
+				UniqueIDGlobalVariables.uniqueID, "ID");
+		ConvertJson.setStringValue(PersonaInterview.interview, customerID,
+				"customerUniqueID");
 
-		ConvertJson.setStringValue(interview,
-				NewPersonaInterview.mainProblemRateField
-						.getValue(NewPersonaInterview.mainProblemRateField
+		// ConvertJson.setStringValue(interview, "", "persona");
+
+		getInterviewQuesitons();
+
+	}
+
+	private static void getInterviewQuesitons() {
+
+		ConvertJson
+				.setStringValue(PersonaInterview.interview,
+						PersonaInterview.describeYourself.getHTML(),
+						"describeYourself");
+
+		ConvertJson.setStringValue(PersonaInterview.interview,
+				PersonaInterview.routine.getHTML(), "routine");
+
+		ConvertJson.setStringValue(PersonaInterview.interview,
+				PersonaInterview.mainProblem.getHTML(), "mainProblem");
+
+		ConvertJson.setStringValue(PersonaInterview.interview,
+				PersonaInterview.mainProblemRateField
+						.getValue(PersonaInterview.mainProblemRateField
 								.getSelectedIndex()), "mainProblemRate");
 
-		ConvertJson.setStringValue(interview,
-				NewPersonaInterview.solutionMainProblem.getHTML(),
+		ConvertJson.setStringValue(PersonaInterview.interview,
+				PersonaInterview.solutionMainProblem.getHTML(),
 				"solutionMainProblem");
 
-		ConvertJson.setStringValue(interview,
-				NewPersonaInterview.secondMainProblem.getHTML(),
+		ConvertJson.setStringValue(PersonaInterview.interview,
+				PersonaInterview.secondMainProblem.getHTML(),
 				"secondMainProblem");
 
-		ConvertJson.setStringValue(interview,
-				NewPersonaInterview.secondProblemRateField
-						.getValue(NewPersonaInterview.secondProblemRateField
+		ConvertJson.setStringValue(PersonaInterview.interview,
+				PersonaInterview.secondProblemRateField
+						.getValue(PersonaInterview.secondProblemRateField
 								.getSelectedIndex()), "secondProblemRate");
 
-		ConvertJson.setStringValue(interview,
-				NewPersonaInterview.otherProblems.getHTML(), "otherProblems");
+		ConvertJson.setStringValue(PersonaInterview.interview,
+				PersonaInterview.solutionMainProblem.getHTML(),
+				"solutionSecondProblem");
 
-		ConvertJson.setStringValue(interview,
-				NewPersonaInterview.openComments.getHTML(), "openComments");
+		ConvertJson.setStringValue(PersonaInterview.interview,
+				PersonaInterview.otherProblems.getHTML(), "otherProblems");
+
+		ConvertJson.setStringValue(PersonaInterview.interview,
+				PersonaInterview.openComments.getHTML(), "openComments");
 	}
 }

@@ -68,16 +68,16 @@ public class SavePersonaInterview {
 
 		parameters += URLUtilities.addSaveParameterText(interview,
 				"solutionSecondProblem");
-		
+
 		parameters += URLUtilities.addSaveParameterText(interview,
 				"otherProblems");
 
 		parameters += URLUtilities.addSaveParameterText(interview,
 				"openComments");
 
-		URLUtilities.fetchURLPost(saveUrl,
-				parameters + EncryptText.getAuthParameter());
+		String interviewID = URLUtilities.fetchURLPost(saveUrl, parameters
+				+ EncryptText.getAuthParameter());
 
-		return interview.toString();
+		return interviewID;
 	}
 }

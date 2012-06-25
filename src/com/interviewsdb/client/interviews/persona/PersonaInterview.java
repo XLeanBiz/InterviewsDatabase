@@ -1,15 +1,20 @@
 package com.interviewsdb.client.interviews.persona;
 
+import co.uniqueid.authentication.client.utilities.ConvertJson;
+
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.RichTextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.interviewsdb.client.InitializeInterviewDatabase;
 import com.interviewsdb.client.interviews.ProblemRateListbox;
-import com.interviewsdb.client.utilities.ConvertJson;
 import com.interviewsdb.client.utilities.FormField;
 
-public class NewPersonaInterview extends VerticalPanel {
+public class PersonaInterview extends VerticalPanel {
+
+	public static JSONObject interview = new JSONObject();
 
 	public static RichTextArea describeYourself = new RichTextArea();
 
@@ -31,13 +36,14 @@ public class NewPersonaInterview extends VerticalPanel {
 
 	public static RichTextArea openComments = new RichTextArea();
 
-	public NewPersonaInterview(JSONObject interview) {
+	public PersonaInterview() {
 
 		this.setSpacing(20);
 
 		this.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 
-		//String company = ConvertJson.convertToString(interview.get("company"));
+		// String company =
+		// ConvertJson.convertToString(interview.get("company"));
 		// this.add(FormField.getStringField("Company", company));
 
 		String customerName = ConvertJson.convertToString(interview
@@ -49,17 +55,29 @@ public class NewPersonaInterview extends VerticalPanel {
 						.get("Persona"));
 		this.add(FormField.getStringField("Persona", personaName));
 
+		ClickHandler clickHandler = new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+
+				ButtonSavePersonaInterview.prepareInterview();
+				SavePersonaInterviewField.save();
+			}
+		};
+
 		String describeYourselfValue = ConvertJson.convertToString(interview
 				.get("describeYourself"));
 		describeYourself.setHTML(describeYourselfValue);
+		describeYourself.addClickHandler(clickHandler);
 		this.add(FormField.getVerticalFormField(
-				"How do you describe yourself as a " + personaName + "?",
+				"How would you describe yourself as a " + personaName + "?",
 				describeYourself));
 		describeYourself.setSize("500px", "80px");
 
 		String routineValue = ConvertJson.convertToString(interview
-				.get("rountine"));
+				.get("routine"));
 		routine.setHTML(routineValue);
+		routine.addClickHandler(clickHandler);
 		this.add(FormField.getVerticalFormField("How is your routine as a "
 				+ personaName + "?", routine));
 		routine.setSize("500px", "80px");
@@ -67,6 +85,7 @@ public class NewPersonaInterview extends VerticalPanel {
 		String mainProblemValue = ConvertJson.convertToString(interview
 				.get("mainProblem"));
 		mainProblem.setHTML(mainProblemValue);
+		mainProblem.addClickHandler(clickHandler);
 		this.add(FormField.getVerticalFormField(
 				"What is your main problem as a " + personaName + "?",
 				mainProblem));
@@ -75,12 +94,14 @@ public class NewPersonaInterview extends VerticalPanel {
 		String mainProblemRate = ConvertJson.convertToString(interview
 				.get("mainProblemRate"));
 		mainProblemRateField = new ProblemRateListbox(mainProblemRate);
+		mainProblemRateField.addClickHandler(clickHandler);
 		this.add(FormField.getVerticalFormField(
 				"How do you rate this problem?", mainProblemRateField));
 
 		String solutionMainProblemValue = ConvertJson.convertToString(interview
 				.get("solutionMainProblem"));
 		solutionMainProblem.setHTML(solutionMainProblemValue);
+		solutionMainProblem.addClickHandler(clickHandler);
 		this.add(FormField.getVerticalFormField(
 				"How are you solving this problem today?", solutionMainProblem));
 		solutionMainProblem.setSize("500px", "80px");
@@ -88,6 +109,7 @@ public class NewPersonaInterview extends VerticalPanel {
 		String secondMainProblemValue = ConvertJson.convertToString(interview
 				.get("secondMainProblem"));
 		secondMainProblem.setHTML(secondMainProblemValue);
+		secondMainProblem.addClickHandler(clickHandler);
 		this.add(FormField.getVerticalFormField(
 				"What is your second main problem as a " + personaName + "?",
 				secondMainProblem));
@@ -96,12 +118,14 @@ public class NewPersonaInterview extends VerticalPanel {
 		String secondProblemRate = ConvertJson.convertToString(interview
 				.get("secondProblemRate"));
 		secondProblemRateField = new ProblemRateListbox(secondProblemRate);
+		secondProblemRateField.addClickHandler(clickHandler);
 		this.add(FormField.getVerticalFormField(
 				"How do you rate this problem?", secondProblemRateField));
 
 		String solutionSecondProblemValue = ConvertJson
 				.convertToString(interview.get("solutionSecondProblem"));
 		solutionSecondProblem.setHTML(solutionSecondProblemValue);
+		solutionSecondProblem.addClickHandler(clickHandler);
 		this.add(FormField.getVerticalFormField(
 				"How are you solving this problem today?",
 				solutionSecondProblem));
@@ -110,6 +134,7 @@ public class NewPersonaInterview extends VerticalPanel {
 		String otherProblemsValue = ConvertJson.convertToString(interview
 				.get("otherProblems"));
 		otherProblems.setHTML(otherProblemsValue);
+		otherProblems.addClickHandler(clickHandler);
 		this.add(FormField.getVerticalFormField("Other Problems?",
 				otherProblems));
 		otherProblems.setSize("500px", "80px");
@@ -117,11 +142,13 @@ public class NewPersonaInterview extends VerticalPanel {
 		String openCommentsValue = ConvertJson.convertToString(interview
 				.get("openComments"));
 		openComments.setHTML(openCommentsValue);
-		this.add(FormField.getVerticalFormField("Open comments:", openComments));
+		openComments.addClickHandler(clickHandler);
+		this.add(FormField.getVerticalFormField("Comments?", openComments));
 		openComments.setSize("500px", "80px");
 
 		this.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 
-		this.add(new ButtonSavePersonaInterview(interview));
+		this.add(new ButtonSavePersonaInterview());
 	}
+
 }

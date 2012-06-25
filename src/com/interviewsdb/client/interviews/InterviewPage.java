@@ -11,8 +11,8 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.interviewsdb.client.InitializeInterviewDatabase;
-import com.interviewsdb.client.interviews.persona.NewPersonaInterview;
-import com.interviewsdb.client.interviews.problem.NewProblemInterview;
+import com.interviewsdb.client.interviews.persona.PersonaInterview;
+import com.interviewsdb.client.interviews.problem.ProblemInterview;
 
 public class InterviewPage extends VerticalPanel {
 
@@ -28,15 +28,19 @@ public class InterviewPage extends VerticalPanel {
 
 		ConvertJson.setStringValue(newInterview, companyUniqueID, "company");
 
-		String intervieweeID = ConvertJson
-				.convertToString(UniqueIDGlobalVariables.uniqueID.get("ID"));
-		ConvertJson.setStringValue(newInterview, intervieweeID, "customerName");
+		if (UniqueIDGlobalVariables.uniqueID != null) {
 
-		String interviewee = ConvertJson
-				.convertToString(UniqueIDGlobalVariables.uniqueID
-						.get("entityName"));
-		ConvertJson.setStringValue(newInterview, interviewee,
-				"customerUniqueID");
+			String intervieweeID = ConvertJson
+					.convertToString(UniqueIDGlobalVariables.uniqueID.get("ID"));
+			ConvertJson.setStringValue(newInterview, intervieweeID,
+					"customerUniqueID");
+
+			String interviewee = ConvertJson
+					.convertToString(UniqueIDGlobalVariables.uniqueID
+							.get("entityName"));
+			ConvertJson.setStringValue(newInterview, interviewee,
+					"customerName");
+		}
 
 		String personaName = ConvertJson
 				.convertToString(InitializeInterviewDatabase.companyData
@@ -53,18 +57,26 @@ public class InterviewPage extends VerticalPanel {
 			@Override
 			public void onClick(ClickEvent event) {
 
+				PersonaInterview.interview = newInterview;
+
 				vpInterview.clear();
-				vpInterview.add(new NewPersonaInterview(newInterview));
+				vpInterview.add(new PersonaInterview());
+
 			}
 		});
 
 		hp.add(personaLink);
+
+		hp.add(new HTML(
+				" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "));
 
 		HTML problemLink = new HTML("<a href=#><b>PROBLEM</b></a>");
 		problemLink.addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
+				
+				ProblemInterview.interview = newInterview;
 
 				String problem = ConvertJson
 						.convertToString(InitializeInterviewDatabase.companyData
@@ -72,7 +84,7 @@ public class InterviewPage extends VerticalPanel {
 				ConvertJson.setStringValue(newInterview, problem, "problem");
 
 				vpInterview.clear();
-				vpInterview.add(new NewProblemInterview(newInterview));
+				vpInterview.add(new ProblemInterview());
 			}
 		});
 		hp.add(problemLink);
@@ -80,7 +92,7 @@ public class InterviewPage extends VerticalPanel {
 		this.add(hp);
 
 		vpInterview.clear();
-		vpInterview.add(new NewPersonaInterview(newInterview));
+		vpInterview.add(new PersonaInterview());
 
 		this.add(vpInterview);
 	}
