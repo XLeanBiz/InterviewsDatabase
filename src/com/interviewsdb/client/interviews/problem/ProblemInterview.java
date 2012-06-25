@@ -35,6 +35,10 @@ public class ProblemInterview extends VerticalPanel {
 		this.setSpacing(20);
 
 		this.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+		
+		String customerName = ConvertJson.convertToString(interview
+				.get("customerName"));
+		this.add(FormField.getStringField("Interviewee", customerName));
 
 		String problem = ConvertJson
 				.convertToString(InitializeInterviewDatabase.companyData

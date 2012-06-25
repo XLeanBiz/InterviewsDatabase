@@ -10,7 +10,7 @@ import com.interviewsdb.client.interviews.InterviewPage;
 
 public class GetStartupData {
 
-	public static void get(final String companyUniqueID) {
+	public static void get(final String companyUniqueID, final boolean isProblem) {
 
 		final StartupDataServiceAsync startupdataService = GWT
 				.create(StartupDataService.class);
@@ -32,7 +32,8 @@ public class GetStartupData {
 							InitializeInterviewDatabase.companyData = obj;
 
 							Home.vpMain.clear();
-							Home.vpMain.add(new InterviewPage(companyUniqueID));
+							Home.vpMain.add(new InterviewPage(companyUniqueID,
+									isProblem));
 						}
 
 					}

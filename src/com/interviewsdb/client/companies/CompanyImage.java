@@ -28,7 +28,7 @@ public class CompanyImage extends VerticalPanel {
 				new UseTracking(this.getClass().getName() + "#"
 						+ companyUniqueID);
 
-				GetStartupData.get(companyUniqueID);
+				GetStartupData.get(companyUniqueID, false);
 			}
 		};
 

@@ -5,6 +5,7 @@ import co.uniqueid.authentication.client.utilities.EncryptText;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window.Location;
+import com.interviewsdb.client.companies.GetStartupData;
 import com.interviewsdb.client.utilities.UseTracking;
 
 /**
@@ -20,7 +21,7 @@ public class GWTEntryPoint implements EntryPoint {
 		new UseTracking(this.getClass().getName());
 
 		String uniqueID = EncryptText.decrypt(Cookies.getCookie("UniqueID"));
-		//uniqueID = "AllineWatkins_1332886062783";
+		// uniqueID = "AllineWatkins_1332886062783";
 
 		if (uniqueID == null || uniqueID.equals("null")) {
 
@@ -45,5 +46,18 @@ public class GWTEntryPoint implements EntryPoint {
 			InitializeInterviewDatabase.initHome(uniqueID);
 		}
 
+		final String company = Location.getParameter("company");
+		if (company != null) {
+
+			final String problem = Location.getParameter("problem");
+			if (problem != null) {
+
+				GetStartupData.get(company, true);
+
+			} else {
+
+				GetStartupData.get(company, false);
+			}
+		}
 	}
 }

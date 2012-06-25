@@ -18,7 +18,7 @@ public class InterviewPage extends VerticalPanel {
 
 	public static VerticalPanel vpInterview = new VerticalPanel();
 
-	public InterviewPage(final String companyUniqueID) {
+	public InterviewPage(final String companyUniqueID, final boolean isProblem) {
 
 		this.setSpacing(20);
 
@@ -75,7 +75,7 @@ public class InterviewPage extends VerticalPanel {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				
+
 				ProblemInterview.interview = newInterview;
 
 				String problem = ConvertJson
@@ -92,7 +92,13 @@ public class InterviewPage extends VerticalPanel {
 		this.add(hp);
 
 		vpInterview.clear();
-		vpInterview.add(new PersonaInterview());
+		if (isProblem) {
+
+			vpInterview.add(new ProblemInterview());
+		} else {
+
+			vpInterview.add(new PersonaInterview());
+		}
 
 		this.add(vpInterview);
 	}
